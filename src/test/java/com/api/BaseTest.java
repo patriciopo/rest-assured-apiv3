@@ -1,6 +1,8 @@
 package com.api;
 
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
 import io.restassured.parsing.Parser;
 import org.testng.annotations.BeforeClass;
 
@@ -17,8 +19,15 @@ public class BaseTest {
     RestAssured.basePath =  API_PATH;
     RestAssured.useRelaxedHTTPSValidation();
     RestAssured.defaultParser = Parser.JSON;
+
+    //set default content type to "application/json"
+    RestAssured.requestSpecification = new RequestSpecBuilder().setContentType(ContentType.JSON).build();
+
+    //set default auth creds to QE user
     RestAssured.authentication = preemptive().basic(System.getProperty("qe.user"), System.getProperty("qe.pass"));
-    RestAssured.enableLoggingOfRequestAndResponseIfValidationFails(); //enabling logging of the request and response for all requests if validation fails
+
+    //enabling logging for all requests only if validation fails
+    RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
   }
 
 }

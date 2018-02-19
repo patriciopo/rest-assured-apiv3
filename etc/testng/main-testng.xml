@@ -15,4 +15,16 @@
         </packages>
     </test>
 
+    <test name="DocumentTest" >
+        <groups>
+            <run>
+                <include name="Document.*"/>
+            </run>
+        </groups>
+
+        <packages>
+            <package name="com.api.*" />
+        </packages>
+    </test>
+
 </suite>
