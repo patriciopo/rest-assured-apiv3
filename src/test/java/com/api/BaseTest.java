@@ -7,12 +7,14 @@ import org.testng.annotations.BeforeClass;
 import static io.restassured.RestAssured.preemptive;
 
 public class BaseTest {
-  final String SERVER = System.getProperty("qe.server");
-  final String API_CONTENT_URI = SERVER + "/api/core/v3/contents";
-  final String API_PEOPLE_URI = SERVER + "/api/core/v3/people";
+  final String API_PATH = "/api/core/v3";
+  final String API_CONTENT_URI = "/contents";
+  final String API_PEOPLE_URI = "/people";
 
   @BeforeClass(alwaysRun = true)
   public void setUp(){
+    RestAssured.baseURI = System.getProperty("qe.server");
+    RestAssured.basePath =  API_PATH;
     RestAssured.useRelaxedHTTPSValidation();
     RestAssured.defaultParser = Parser.JSON;
     RestAssured.authentication = preemptive().basic(System.getProperty("qe.user"), System.getProperty("qe.pass"));
