@@ -3,7 +3,7 @@
 
 <suite name="Rest-assured API Test Suite" verbose="1" parallel="false">
 
-    <test name="DEBUG" >
+    <test name="debug" >
         <groups>
             <run>
                 <include name="debug"/>
